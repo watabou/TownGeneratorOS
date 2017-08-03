@@ -69,7 +69,7 @@ class Model {
 	public function new( nPatches=-1, seed=-1 ) {
 
 		if (seed > 0) Random.reset( seed );
-		this.nPatches = 80;//nPatches != -1 ? nPatches : 15;
+		this.nPatches = nPatches != -1 ? nPatches : 15;
 
 		plazaNeeded		= Random.bool();
 		citadelNeeded	= Random.bool();
