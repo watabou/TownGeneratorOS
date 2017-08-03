@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="Medieval Fantasy City Generator" package="com.watabou.towngenerator" version="0.0.1" company="Retronic Games" />
+	<app main="com.watabou.towngenerator.Main" path="Export" file="TownGenerator" />
+	
+	<source path="Source" />
+	
+	<haxelib name="openfl" />
+	<haxelib name="msignal" />
+
+	<!-- General -->
+	<window background="0xccc5b8" fps="120" vsync="true" hardware="true" allow-high-dpi="true"/>
+	<!-- Desktop -->
+	<window width="800" height="800" fullscreen="false" resizable="true" borderless="false" if="desktop"/>
+	<!-- Mobile -->
+	<window width="0" height="0" fullscreen="true" orientation="portrait" if="mobile" />
+	
+	<assets path="Assets">
+		<image path="maroubra.png" id="font" />
+	</assets>
+	
+</project>
