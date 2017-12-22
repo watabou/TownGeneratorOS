@@ -18,16 +18,21 @@ using com.watabou.utils.PointExtender;
 
 class CityMap extends Sprite {
 
-	public static var palette = Palette.DEFAULT;
+	public static var palette_type = 'ADVANCED';
+
+	public static var palette = Palette.MOJEEB;
+	public static var advanced_palette = AdvancedPalette.DEFAULT;
 
 	private var patches	: Array<PatchView>;
 
 	private var brush	: Brush;
+	private var brush_advanced	: BrushAdvanced;
 
 	public function new( model:Model ) {
 		super();
 
 		brush = new Brush( palette );
+		brush_advanced = new BrushAdvanced( advanced_palette );
 
 		var model = Model.instance;
 
@@ -42,22 +47,47 @@ class CityMap extends Sprite {
 			var patchView = new PatchView( patch );
 			var patchDrawn = true;
 
-			var g = patchView.graphics;
-			switch (Type.getClass( patch.ward )) {
-				case Castle:
-					drawBuilding( g, patch.ward.geometry, palette.light, palette.dark, Brush.NORMAL_STROKE * 2 );
-				case Cathedral:
-					drawBuilding( g, patch.ward.geometry, palette.light, palette.dark, Brush.NORMAL_STROKE );
-				case Market, CraftsmenWard, MerchantWard, GateWard, Slum, AdministrationWard, MilitaryWard, PatriciateWard, Farm:
-					brush.setColor( g, palette.light, palette.dark );
-					for (building in patch.ward.geometry)
-						g.drawPolygon( building );
-				case Park:
-					brush.setColor( g, palette.medium );
-					for (grove in patch.ward.geometry)
-						g.drawPolygon( grove );
-				default:
-					patchDrawn = false;
+			if (palette_type == 'NORMAL'){
+				var g = patchView.graphics;
+				switch (Type.getClass( patch.ward )) {
+					case Castle:
+						drawBuilding( g, patch.ward.geometry, palette.light, palette.dark, Brush.NORMAL_STROKE * 2 );
+					case Cathedral:
+						drawBuilding( g, patch.ward.geometry, palette.light, palette.dark, Brush.NORMAL_STROKE );
+					case Market, CraftsmenWard, MerchantWard, GateWard, Slum, AdministrationWard, MilitaryWard, PatriciateWard, Farm:
+						brush.setColor( g, palette.light, palette.dark );
+						for (building in patch.ward.geometry)
+							g.drawPolygon( building );
+					case Park:
+						brush.setColor( g, palette.medium );
+						for (grove in patch.ward.geometry)
+							g.drawPolygon( grove );
+					default:
+						patchDrawn = false;
+				}
+			}
+			else if (palette_type == 'ADVANCED'){
+				var g = patchView.graphics;
+				switch (Type.getClass( patch.ward )) {
+					case Castle:
+						drawBuilding( g, patch.ward.geometry, advanced_palette.plot, advanced_palette.building, BrushAdvanced.NORMAL_STROKE * 2 );
+					case Cathedral:
+						drawBuilding( g, patch.ward.geometry, advanced_palette.plot, advanced_palette.building, BrushAdvanced.NORMAL_STROKE );
+					case Market, CraftsmenWard, MerchantWard, GateWard, Slum, AdministrationWard, MilitaryWard, PatriciateWard:
+						brush.setColor( g, advanced_palette.plot, advanced_palette.building );
+						for (building in patch.ward.geometry)
+							g.drawPolygon( building );
+					case Farm:
+						brush.setColor( g, advanced_palette.grass, advanced_palette.building );
+						for (building in patch.ward.geometry)
+							g.drawPolygon( building );
+					case Park:
+						brush.setColor( g, advanced_palette.grass );
+						for (grove in patch.ward.geometry)
+							g.drawPolygon( grove );
+					default:
+						patchDrawn = false;
+				}
 			}
 
 			patches.push( patchView );

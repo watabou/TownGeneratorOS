@@ -3,8 +3,7 @@ package com.watabou.towngenerator.mapping;
 import openfl.display.JointStyle;
 import openfl.display.Graphics;
 
-class Brush {
-
+class BrushAdvanced {
 	public static inline var NORMAL_STROKE	= 0.300;
 	public static inline var THICK_STROKE	= 1.800;
 	public static inline var THIN_STROKE	= 0.150;
@@ -13,13 +12,13 @@ class Brush {
 	public var fillColor	= 0xcccccc;
 	public var stroke		= NORMAL_STROKE;
 
-	private var palette				: Palette;
+	private var advanced_palette	: AdvancedPalette;
 
 	private static var lastDark		: Int = -1;
 	private static var lastPaper	: Int = -1;
 
-	public function new( palette:Palette ) {
-		this.palette = palette;
+	public function new( advanced_palette:AdvancedPalette ) {
+		this.advanced_palette = advanced_palette;
 	}
 
 	public function setFill( g:Graphics, color:Int ) {
