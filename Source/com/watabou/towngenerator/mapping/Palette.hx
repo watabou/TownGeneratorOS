@@ -22,4 +22,5 @@ class Palette {
 	public static var ANCIENT	= new Palette( 0xccc5a3, 0xa69974, 0x806f4d, 0x342414 );
 	public static var COLOUR	= new Palette( 0xfff2c8, 0xd6a36e, 0x869a81, 0x4c5950 );
 	public static var SIMPLE	= new Palette( 0xffffff, 0x000000, 0x000000, 0x000000 );
+	public static var MOJEEB	= new Palette( 0xF7EACA, 0x30D99C, 0xE7B632, 0xd93544 );
 }
