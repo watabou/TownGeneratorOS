@@ -1,6 +1,7 @@
 package com.watabou.utils;
 
-import lime.graphics.Renderer;
+import lime.ui.Window;
+import lime.graphics.RenderContext;
 import msignal.Signal.Signal1;
 import openfl.Lib;
 import openfl.display.DisplayObject;
@@ -55,7 +56,7 @@ class Updater {
 		source = new FrameEventDispatcher( src );
 	}
 
-	public static function useRenderer( renderer:Renderer ):Void {
+	public static function useRenderer( renderer:Window ):Void {
 		if (source != null) {
 			source.stop();
 		}
@@ -130,14 +131,14 @@ private class FrameEventDispatcher extends RecurringEventDispatcher {
 
 private class RendererDispatcher extends RecurringEventDispatcher {
 
-	private var renderer : Renderer;
+	private var renderer : Window;
 
-	public function new( renderer : Renderer ) {
+	public function new( renderer : Window ) {
 		this.renderer = renderer;
 		renderer.onRender.add( onRender );
 	}
 
-	private function onRender():Void {
+	private function onRender(context: RenderContext):Void {
 		Updater.fire();
 	}
 

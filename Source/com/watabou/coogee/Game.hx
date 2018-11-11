@@ -19,7 +19,7 @@ class Game extends Sprite {
 		super();
 
 		prepareStage();
-		Updater.useRenderer( stage.window.renderer );
+		Updater.useRenderer( stage.window );
 
 		switchScene( initScene );
 	}
