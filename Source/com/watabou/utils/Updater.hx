@@ -1,6 +1,7 @@
 package com.watabou.utils;
 
-import lime.graphics.Renderer;
+import lime.graphics.RenderContext;
+import lime.ui.Window;
 import msignal.Signal.Signal1;
 import openfl.Lib;
 import openfl.display.DisplayObject;
@@ -55,11 +56,11 @@ class Updater {
 		source = new FrameEventDispatcher( src );
 	}
 
-	public static function useRenderer( renderer:Renderer ):Void {
+	public static function useRenderer( window:Window ):Void {
 		if (source != null) {
 			source.stop();
 		}
-		source = new RendererDispatcher( renderer );
+		source = new RendererDispatcher( window );
 	}
 
 	public static function wait( time:Float, callback:Void->Void ):Float->Void {
@@ -130,18 +131,18 @@ private class FrameEventDispatcher extends RecurringEventDispatcher {
 
 private class RendererDispatcher extends RecurringEventDispatcher {
 
-	private var renderer : Renderer;
+	private var window : Window;
 
-	public function new( renderer : Renderer ) {
-		this.renderer = renderer;
-		renderer.onRender.add( onRender );
+	public function new( window:Window ) {
+		this.window = window;
+		window.onRender.add( onRender );
 	}
 
-	private function onRender():Void {
+	private function onRender( context:RenderContext ):Void {
 		Updater.fire();
 	}
 
 	override public function stop():Void {
-		renderer.onRender.remove( onRender );
+		window.onRender.remove( onRender );
 	}
 }

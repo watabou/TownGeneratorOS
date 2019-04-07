@@ -5,9 +5,10 @@
 	<app main="com.watabou.towngenerator.Main" path="Export" file="TownGenerator" />
 	
 	<source path="Source" />
-	
-	<haxelib name="openfl" />
-	<haxelib name="msignal" />
+
+	<haxelib name="lime" version="7.3.0" />
+	<haxelib name="openfl" version="8.9.0" />
+	<haxelib name="msignal" version="1.2.5" />
 
 	<!-- General -->
 	<window background="0xccc5b8" fps="120" vsync="true" hardware="true" allow-high-dpi="true"/>
