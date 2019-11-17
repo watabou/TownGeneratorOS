@@ -6,8 +6,8 @@
 	
 	<source path="Source" />
 
-	<haxelib name="lime" version="7.3.0" />
-	<haxelib name="openfl" version="8.9.0" />
+	<haxelib name="lime" version="7.6.3" />
+	<haxelib name="openfl" version="8.9.5" />
 	<haxelib name="msignal" version="1.2.5" />
 
 	<!-- General -->
