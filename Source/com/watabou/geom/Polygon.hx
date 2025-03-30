@@ -158,7 +158,10 @@ abstract Polygon(Array<Point>) from Array<Point> to Array<Point> {
 		for (i in 1...this.length) {
 			var v1 = this[i];
 			var d1 = Point.distance( v1, p );
-			if (d1 < d) v0 = v1;
+			if (d1 < d) {
+				v0 = v1;
+				d = d1;
+			}
 		}
 		return d;
 	}
