@@ -54,7 +54,7 @@ class StateManager {
 		else if (size >= 24 && size < 40)
 			"Large City"
 		else if (size >= 40)
-			"Metropilis"
+			"Metropolis"
 		else
 			"Unknown state";
 	}
